@@ -1,4 +1,5 @@
 import sys
+import os
 from dataclasses import dataclass
 
 import numpy as np 
@@ -7,6 +8,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler
+
+other_code_directory = os.path.join(os.path.dirname(os.path.abspath("src")))
+sys.path.append(other_code_directory)
 
 from src.exceptions import CustomException
 from src.logger import logging
@@ -19,7 +23,7 @@ class DataTransformationConfig:
     preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
-    def _init_(self):
+    def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
 
     def get_data_transformer_object(self):
